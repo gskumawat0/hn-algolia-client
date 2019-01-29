@@ -1,0 +1,41 @@
+a:hover {
+    text-decoration: none;
+}
+nav {
+    background: #FF742B;
+    height: 60px;
+    display : flex;
+    align-items: center;
+    padding: 6px;
+    color : #fff;
+    font-weight: normal;
+}
+nav div{
+    padding-bottom: 0;
+}
+
+.nav-brand {
+    padding: 2px;
+    
+}
+
+.nav-brand img{
+    height: 50px;
+    width: 50px;    
+}
+.brand-name h1{
+    max-height: 100%;
+    line-height: .9;
+    font-size: 1.5rem;
+}
+
+.nav-input input{
+    height: 100%;
+    padding: 7px;
+    width: 600px;
+}
+
+.nav-setting i{
+    transform: rotate(90deg);
+}
+

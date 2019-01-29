@@ -1,0 +1,10 @@
+header {
+    display : flex;
+    /*border-bottom: 1px solid grey;*/
+}
+
+.section-header select{
+    border-radius: 3px;
+    outline: none;
+}
+
