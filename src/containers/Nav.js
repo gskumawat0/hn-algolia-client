@@ -7,15 +7,29 @@ import {logout} from '../store/actions/auth';
 
 
 class Navbar extends Component {
-    // constructor (props){
-    //     super(props);
-    // }
+    constructor (props){
+        super(props);
+        this.state = {
+            query: ''
+        };
+        
+        this.handleChange = this.handleChange.bind(this);
+        // this.handleBlur = this.handleBlur.bind(this);
+    }
+    
+    handleChange = (e)=>{
+        this.setState({
+            [e.target.name] : e.target.value
+        });
+    }
+    
     logout =e =>{
         e.preventDefault();
         this.props.logout();
     }
     render(){
         const showItem = this.props.currentUser.isAuthenticated ? <h1>this.props.currentUser.email </h1> : <h1>Search <br /> Hacker News </h1>; 
+        const {query} = this.state;
         return ( 
             <nav>
                 <div className='nav-brand'>
@@ -26,10 +40,10 @@ class Navbar extends Component {
                 </div>
                 <div className='nav-input mx-3'>
                      {/* <i className="fa fa-search" aria-hidden="true"></i> */}
-                     <input name='query'  placeholder='Stories, polls, jobs, comment'/> 
+                     <input name='query' onChange={this.handleChange} onBlur={this.handleBlur} value={query}  placeholder='Stories, polls, jobs, comment'/> 
                 </div>
                 <div className='mx-3 nav-algolia '>
-                    <p className='mb-0'><Link className='text-white' to='https://www.algolia.com/'><span className='text-dark'> by </span>Algolia</Link></p>
+                    <p className='mb-0'><a className='text-white' rel='noopener noreferrer' href='https://www.algolia.com/?utm_source=hn_search&utm_medium=link&utm_term=logo&utm_campaign=hn_algolia'><span className='text-dark'> by </span>Algolia</a></p>
                 </div>
                 <div className='nav-logout ml-2 mr-0 pr-0 float-right'>
                     {this.props.currentUser.isAuthenticated && <a href='www.link.com' onclick={this.logout} className='text-white'>logout </a>}

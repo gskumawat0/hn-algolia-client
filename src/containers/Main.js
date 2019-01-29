@@ -11,7 +11,7 @@ const Main = (props)=>{
     const {authUser, errors, removeError, currentUser} = props;
     return(
         <Switch>
-            <Route exact path='/' render={props => <Homepage currentUser={currentUser} {...props} />} />
+            <Route exact path='/' render={props => <Homepage currentUser={currentUser} {...props} />} /> 
             <Route exact path='/signin' render={props => {
                 return (
                 <AuthForm {...props} errors={errors} onAuth={authUser} removeError={removeError} buttonText='log In' heading='Welcome back.' />)}} 

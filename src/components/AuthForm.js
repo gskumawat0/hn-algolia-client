@@ -8,17 +8,17 @@ class AuthForm extends Component {
             password: '',
             email:''
         };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);    
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);    
     }
     
     handleSubmit = e =>{
         e.preventDefault();
-        const authType = this.props.signUp? 'signup' :'signin';
+        const authType = this.props.signUp ? 'signup' :'signin';
         this.props.onAuth(authType,this.state)
             .then(()=>{this.props.history.push('/')})
-            .catch((err)=>{
-                return;            
+            .catch(()=>{
+                return ;            
             });
     };
         

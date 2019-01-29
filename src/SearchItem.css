@@ -1,9 +1,9 @@
 .search-item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee;
 }
 
 .search-item h1{
-    font-size: 1.7rem;
+    font-size: 1.3rem;
 } 
 
 .search-item p {

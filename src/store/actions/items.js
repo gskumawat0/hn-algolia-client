@@ -9,9 +9,10 @@ export const  loadItems = (items) =>({
 
 export const fetchItems = () =>{
     return dispatch => {
-        return apiCall('get','/')
+        return apiCall('get','http://hn.algolia.com/api/v1/search?tags=front_page')
             .then(res =>{
-                dispatch(loadItems(res));
+                // console.log(res.hits);
+                dispatch(loadItems(res.hits));
             })
             .catch(err =>{
                 dispatch(addError(err.message));

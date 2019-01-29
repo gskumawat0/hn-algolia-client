@@ -1,10 +1,10 @@
 import React from 'react';
 import '../Homepage.css';
-import SectionFilters from '../SectionFilters';
+import SectionFilters from './SectionFilters';
 import SectionBody from '../components/SectionBody';
 
 const  Homepage = ({currentUser})=> {
-    if(!currentUser.isAuthenticated){
+    if( currentUser && currentUser.isAuthenticated){
         return (
             <div className='mb-0'>
                 < SectionFilters />
@@ -13,7 +13,10 @@ const  Homepage = ({currentUser})=> {
             );
     }
     else {
-        return (<div> you made it!! </div>)
+        return (<div>
+            <SectionFilters />
+            <SectionBody /> 
+        </div>);
     }
 };
 export default Homepage;   
