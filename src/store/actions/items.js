@@ -8,6 +8,7 @@ export const  loadItems = (items) =>({
 });
 
 export const fetchItems = () =>{
+    debugger
     return dispatch => {
         return apiCall('get','http://hn.algolia.com/api/v1/search?tags=front_page')
             .then(res =>{

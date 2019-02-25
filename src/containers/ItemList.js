@@ -6,9 +6,11 @@ import SearchItem from '../components/SearchItem';
 
 class ItemList extends Component{
     componentDidMount(){
+        debugger
         this.props.fetchItems();
     }
     render(){
+        debugger
         const {items} = this.props;
         console.log(items);
         let itemList = items.map((item,i)=> < SearchItem 

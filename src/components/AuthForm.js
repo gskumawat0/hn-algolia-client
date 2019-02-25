@@ -14,7 +14,9 @@ class AuthForm extends Component {
     
     handleSubmit = e =>{
         e.preventDefault();
+        debugger
         const authType = this.props.signUp ? 'signup' :'signin';
+        debugger
         this.props.onAuth(authType,this.state)
             .then(()=>{this.props.history.push('/')})
             .catch(()=>{

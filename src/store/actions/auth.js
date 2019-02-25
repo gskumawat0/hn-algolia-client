@@ -25,18 +25,24 @@ export function logout(){
 }
 
 export function authUser(type,userData){
+    debugger
     return dispatch =>{
         return new Promise((resolve,reject)=>{
-            return apiCall('post', `/api/auth/${type}`,userData)
+            return apiCall('post', `https://hn-algolia-gskumawat.c9users.io:8080/api/auth/${type}`,userData)
                 .then((token, ...user) =>{
+                    debugger
                     localStorage.setItem('jwtToken', token);
                     setAuthorizationToken({token});
+                    debugger
                     dispatch(setCurrentUser(user));
+                    debugger
                     dispatch(removeError());
                     resolve();
                 })
-                .catch(err =>{
-                    dispatch(addError(err.message));
+                .catch((err)=>{
+                    debugger
+                    console.log(err);
+                    dispatch(addError(err));
                     reject();
                 });
     }
