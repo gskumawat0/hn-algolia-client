@@ -1,15 +1,15 @@
 import React from 'react';
 import ItemList from '../containers/ItemList';
-import '../SectionBody.css';
+import './SectionBody.css';
 
-const  SectionBody = ()=> {
+const SectionBody = () => {
     return (
         <div className='section-body'>
             <ItemList />
             
         </div>
     );
-};    
+};
 
 
 

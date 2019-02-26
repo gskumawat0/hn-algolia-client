@@ -1,29 +1,29 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import { configureStore} from '../store'
-import { BrowserRouter as Router} from 'react-router-dom'
-import '../App.css';
+import { Provider } from 'react-redux';
+import { configureStore } from '../store'
+import { BrowserRouter as Router } from 'react-router-dom'
+import './App.css';
 import Navbar from './Nav';
 import Main from './Main';
-import {setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
+import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 import jwtDecode from 'jwt-decode';
 
 
 const store = configureStore();
 
-if(!localStorage.jwtToken){
+if (!localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken)
   // prevent manullay tempering
   try {
     store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
   }
-  catch(e){
+  catch (e) {
     store.dispatch(setCurrentUser({}));
   }
 }
 
-const App =() =>{
-  
+const App = () => {
+
   return (
     <Provider store={store} >
       <Router>

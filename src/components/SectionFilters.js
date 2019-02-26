@@ -1,26 +1,27 @@
-import React, { Component} from 'react';
-import '../SectionFilters.css';
+import React, { Component } from 'react';
+import './SectionFilters.css';
 
 class SectionFilters extends Component {
-    constructor (props){
+    constructor(props) {
         super(props);
-        this.state= {
-            sort :'byDate',
+        this.state = {
+            sort: 'byDate',
             dateRange: 'all',
-            type:'all'
+            type: 'all'
         };
-        
-        
-        this.handleChange = this.handleChange.bind(this); 
+
+
+        this.handleChange = this.handleChange.bind(this);
     }
-    
-    handleChange= (e)=>{
-        this.setState({[e.target.name] : e.target.value});
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value });
     }
-    
-    render(){
-        const {sort, dateRange, type} = this.state;
-        return ( 
+
+    render() {
+        const { sort, dateRange, type } = this.state;
+        return (
             <header className='section-header'>
                 <div className='query'>
                      Search
@@ -48,7 +49,7 @@ class SectionFilters extends Component {
                     </select>
                 </div>
             </header>
-            );
+        );
     }
 }
 
