@@ -25,7 +25,7 @@ export function logout() {
 }
 
 export function authUser(type, userData) {
-    let authUrl = process.env.NODE_ENV === 'development' ? `https://hn-algolia-gskumawat.c9users.io:8080/api/auth` : process.env.AUTH_URL
+    let authUrl = `http://hn-algolia-server.herokuapp.com/api/auth`
     return dispatch => {
         return new Promise((resolve, reject) => {
             return apiCall('post', `${authUrl}/${type}`, userData)
