@@ -12,42 +12,29 @@ import jwtDecode from 'jwt-decode';
 const store = configureStore();
 
 if (!localStorage.jwtToken) {
-  setAuthorizationToken(localStorage.jwtToken)
-  // prevent manullay tempering
-  try {
-    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
-  }
-  catch (e) {
-    store.dispatch(setCurrentUser({}));
-  }
+    setAuthorizationToken(localStorage.jwtToken)
+    // prevent manullay tempering
+    try {
+        store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+    }
+    catch (e) {
+        store.dispatch(setCurrentUser({}));
+    }
 }
 
 const App = () => {
-
-  return (
-    <Provider store={store} >
-      <Router>
-        <div className ='container'>
-          <Navbar />
-          <section className='main'>
-            <Main />
-          </section>  
-        </div>
-      </Router>
-    </Provider>
-  )
+    return (
+        <Provider store={store} >
+          <Router>
+            <div className ='container'>
+              <Navbar />
+              <section className='main'>
+                <Main />
+              </section>  
+            </div>
+          </Router>
+        </Provider>
+    )
 };
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className ='container'>
-//         <Nav />
-//         <section className='main'>
-//           <MainContent />
-//         </section>  
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
