@@ -42,8 +42,21 @@ export function authUser(type, userData) {
                 })
                 .catch((err) => {
                     debugger
-                    console.log(err);
-                    dispatch(addError(err));
+                    if (err.response) {
+                        console.log(1213, err.response.data);
+                        dispatch(addError(err.response.data));
+                    }
+                    else if (err.request) {
+                        console.log(err, 4555555);
+                        dispatch(addError('an error occured while processing your request'));
+                    }
+                    else {
+                        // Something happened in setting up the request that triggered an Error
+                        console.log(err, err.message, 2222);
+                        dispatch(addError(err.message));
+                    }
+                    // console.log(err);
+
                     reject();
                 });
         })

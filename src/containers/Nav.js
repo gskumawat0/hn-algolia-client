@@ -28,7 +28,8 @@ class Navbar extends Component {
         this.props.logout();
     }
     render() {
-        const showItem = this.props.currentUser.isAuthenticated ? <h1>this.props.currentUser.email </h1> : <h1>Search <br /> Hacker News </h1>;
+        debugger
+        const showItem = this.props.currentUser.isAuthenticated ? <h1>{this.props.currentUser.user.username} </h1> : <h1>Search <br /> Hacker News </h1>;
         const { query } = this.state;
         return (
             <nav>
@@ -46,7 +47,7 @@ class Navbar extends Component {
                     <p className='mb-0'><a className='text-white' rel='noopener noreferrer' href='https://www.algolia.com/?utm_source=hn_search&utm_medium=link&utm_term=logo&utm_campaign=hn_algolia'><span className='text-dark'> by </span>Algolia</a></p>
                 </div>
                 <div className='nav-logout ml-2 mr-0 pr-0 float-right'>
-                    {this.props.currentUser.isAuthenticated && <a href='www.link.com' onClick={this.logout} className='text-white'>logout </a>}
+                    {this.props.currentUser.isAuthenticated && <a href='/logout' onClick={this.logout} className='text-white'>logout </a>}
                 </div>
                 <div className='nav-setting ml-5 mr-0 pr-0 float-right'>
                     <a href='/setting' className='text-white'><i className="fa fa-sliders fa-2x" aria-hidden="true"></i> </a>

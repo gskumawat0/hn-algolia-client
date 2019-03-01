@@ -12,7 +12,7 @@ const Main = (props) => {
     // console.log(props);
     return (
         <Switch>
-            <Route exact path='/' render={props => <Homepage currentUser={currentUser} {...props} />} /> 
+            <Route exact path='/' render = { props => <Homepage currentUser={currentUser} {...props} /> } /> 
             <Route exact path='/signup' render={props => {
                 return (
                 <AuthForm {...props} signUp={true} errors={errors} onAuth={authUser} removeError={removeError} buttonText='Sign In' heading='Sign Up and Start Searching.' />)}} 

@@ -8,9 +8,11 @@ export const loadItems = (items) => ({
 });
 
 export const fetchItems = () => {
+    let baseUrl = `http://hn.algolia.com/api/v1/search/`
+
     debugger
     return dispatch => {
-        return apiCall('get', 'https://hn.algolia.com/api/v1/search?tags=front_page')
+        return apiCall('get', `${baseUrl}?tags=front_page`)
             .then(res => {
                 // console.log(res.hits);
                 dispatch(loadItems(res.hits));

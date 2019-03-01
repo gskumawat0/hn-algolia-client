@@ -19,7 +19,8 @@ class AuthForm extends Component {
         debugger
         this.props.onAuth(authType, this.state)
             .then(() => { this.props.history.push('/') })
-            .catch(() => {
+            .catch((err) => {
+                console.log(err.message);
                 return;
             });
     };
@@ -38,13 +39,17 @@ class AuthForm extends Component {
             removeError();
         });
         errors.messages && console.log(errors.messages);
+        // let errorMessagesList = 
         return (
             <div className='mt-5'>
                 <div className='row justify-content-md-center'>
                     <div className="col-md-6 mt-3">
                         <form onSubmit={this.handleSubmit}>
                             <h2 className='text-center mt-4'>{heading}</h2>
-                            {errors.message && <div className='alert alert-danger'> {errors.message[0]}</div>}
+                            {errors.messages > 0 ? errors.messages.map((err, i) => {
+                                console.log(err, 21312313, err.message);
+                                        return <div key={i} className='alert alert-danger'> {err}</div>
+                                    }) : null}
                             <label htmlFor="email" className='text-left mt-2'>Email:</label>
                             <input type="text" className='form-control' id='email' placeholder='email' value={email} onChange={this.handleChange} name="email"/>
                             <label htmlFor="username" className='text-left mt-2'>Username:</label>
