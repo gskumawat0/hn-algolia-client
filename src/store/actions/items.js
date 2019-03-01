@@ -7,17 +7,16 @@ export const loadItems = (items) => ({
     items,
 });
 
-export const fetchItems = () => {
-    let baseUrl = `http://hn.algolia.com/api/v1/search/`
-
-    debugger
+export const fetchItems = (query) => {
+    let baseUrl = `http://hn.algolia.com/api/v1/search`
+    let searchUrl = `${baseUrl}?query=${query||''}&tags=story`;
     return dispatch => {
-        return apiCall('get', `${baseUrl}?tags=front_page`)
-            .then(res => {
-                // console.log(res.hits);
+        return apiCall('get', searchUrl, null)
+            .then((res) => {
                 dispatch(loadItems(res.hits));
             })
-            .catch(err => {
+            .catch((err) => {
+                debugger
                 dispatch(addError(err.message));
             });
     };

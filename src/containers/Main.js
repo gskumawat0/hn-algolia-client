@@ -8,11 +8,10 @@ import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth'
 
 const Main = (props) => {
-    const { authUser, errors, removeError, currentUser } = props;
-    // console.log(props);
+    const { authUser, errors, removeError, } = props;
     return (
         <Switch>
-            <Route exact path='/' render = { props => <Homepage currentUser={currentUser} {...props} /> } /> 
+            <Route exact path='/' component={withAuth(Homepage)} /> } /> 
             <Route exact path='/signup' render={props => {
                 return (
                 <AuthForm {...props} signUp={true} errors={errors} onAuth={authUser} removeError={removeError} buttonText='Sign In' heading='Sign Up and Start Searching.' />)}} 

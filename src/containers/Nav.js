@@ -4,6 +4,7 @@ import logo from '../hn-algolia-logo.PNG';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store/actions/auth';
+import { fetchItems } from '../store/actions/items';
 
 
 class Navbar extends Component {
@@ -14,22 +15,22 @@ class Navbar extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        // this.handleBlur = this.handleBlur.bind(this);
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
+        this.props.fetchItems(e.target.value);
     }
+
 
     logout = e => {
         e.preventDefault();
         this.props.logout();
     }
     render() {
-        debugger
-        const showItem = this.props.currentUser.isAuthenticated ? <h1>{this.props.currentUser.user.username} </h1> : <h1>Search <br /> Hacker News </h1>;
+        const showItem = this.props.currentUser.isAuthenticated ? <h1>{this.props.currentUser.username} </h1> : <h1>Search <br /> Hacker News </h1>;
         const { query } = this.state;
         return (
             <nav>
@@ -39,17 +40,16 @@ class Navbar extends Component {
                 <div className='brand-name px-3'>
                     {showItem}  
                 </div>
-                <div className='nav-input mx-3'>
-                     {/* <i className="fa fa-search" aria-hidden="true"></i> */}
-                     <input name='query' onChange={this.handleChange} onBlur={this.handleBlur} value={query}  placeholder='Stories, polls, jobs, comment'/> 
+                <div className='nav-input  mx-3'>
+                    {this.props.currentUser.isAuthenticated && <input name='query' onChange={this.handleChange}  value={query}  placeholder='Stories, polls, jobs, comment'/> }
                 </div>
-                <div className='mx-3 nav-algolia '>
-                    <p className='mb-0'><a className='text-white' rel='noopener noreferrer' href='https://www.algolia.com/?utm_source=hn_search&utm_medium=link&utm_term=logo&utm_campaign=hn_algolia'><span className='text-dark'> by </span>Algolia</a></p>
+                <div className=' nav-algolia ml-auto '>
+                    <a className='text-white text-center' rel='noopener noreferrer' href='https://www.algolia.com/?utm_source=hn_search&utm_medium=link&utm_term=logo&utm_campaign=hn_algolia'><span className='text-dark'> by </span>Algolia</a>
                 </div>
-                <div className='nav-logout ml-2 mr-0 pr-0 float-right'>
+                <div className='nav-logout  mx-2 float-right'>
                     {this.props.currentUser.isAuthenticated && <a href='/logout' onClick={this.logout} className='text-white'>logout </a>}
                 </div>
-                <div className='nav-setting ml-5 mr-0 pr-0 float-right'>
+                <div className='nav-setting  mr-2'>
                     <a href='/setting' className='text-white'><i className="fa fa-sliders fa-2x" aria-hidden="true"></i> </a>
                 </div>
             </nav>
@@ -64,4 +64,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout, fetchItems })(Navbar);

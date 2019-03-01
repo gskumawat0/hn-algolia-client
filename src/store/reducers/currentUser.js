@@ -9,8 +9,8 @@ const DEFAULT_STATE = {
 const userReducer = (state = DEFAULT_STATE, action) => {
     switch (action.type) {
         case SET_CURRENT_USER:
-            debugger
-            return { isAuthenticated: !!Object.keys(action.user).length, user: action.user }
+            // debugger
+            return { isAuthenticated: !!Object.keys(action.user).length, ...action.user }
         default:
             return state;
     }
