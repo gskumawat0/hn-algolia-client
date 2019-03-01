@@ -1,34 +1,32 @@
-import  React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
-export default function withAuth(ComponentToBeRendered){
-    class Authenticate extends Component{
-        ComponentWillMount(){
-            if(!this.props.isAuthenticated){
-                this.props.history.push('/signup');
+export default function withAuth(ComponentToBeRendered) {
+    class Authenticate extends Component {
+        componentWillMount() {
+            if (!this.props.isAuthenticated) {
+                this.props.history.push('/signin');
             }
         }
-        ComponentWillUpdate(nextProps){
-            if(!this.props.isAuthenticated){
-                this.props.history.push('/signup');
+        componentWillUpdate(nextProps) {
+            if (!this.props.isAuthenticated) {
+                this.props.history.push('/signin');
             }
         }
-        
-        render(){
-            return < ComponentToBeRendered {...this.props} />
+
+        render() {
+            return <ComponentToBeRendered { ...this.props }/>
         }
-        
-        
-        
     }
-    function mapStateToProps(state){
+
+    function mapStateToProps(state) {
         return {
-            isAuthenticated: state.currentUser.isAuthenticated
+            isAuthenticated: state.currentUser.isAuthenticated,
+            currentUser: state.currentUser.user.username
         };
     }
-    
-    
-    return connect(mapStateToProps)(Authenticate);
-    
+
+    return connect(mapStateToProps, null)(Authenticate);
+
 }
