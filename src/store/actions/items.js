@@ -9,8 +9,9 @@ export const loadItems = (items) => ({
 
 export const fetchItems = (query) => {
     let baseUrl = `http://hn.algolia.com/api/v1/search`
-    let searchUrl = `${baseUrl}?query=${query||''}&tags=story`;
+    let searchUrl = `${baseUrl}?query=${query||''}&tags=story${process.env.NODE_ENV !=='development'?'&origin=*' : ''}`;
     return dispatch => {
+        debugger
         return apiCall('get', searchUrl, null)
             .then((res) => {
                 dispatch(loadItems(res.hits));

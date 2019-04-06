@@ -7,14 +7,12 @@ export default function withAuth(ComponentToBeRendered) {
     class Authenticate extends Component {
         componentWillMount() {
             if (!this.props.isAuthenticated) {
-                this.props.removeError();
                 this.props.addError('you must be signed in to proceed');
                 this.props.history.push('/signin');
             }
         }
         componentWillUpdate(nextProps) {
             if (!this.props.isAuthenticated) {
-                this.props.removeError();
                 this.props.addError('you must be signed in to proceed');
                 this.props.history.push('/signin');
             }

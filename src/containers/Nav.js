@@ -21,7 +21,8 @@ class Navbar extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-        this.props.fetchItems(e.target.value);
+        if (e.target.value !== '')
+            this.props.fetchItems(e.target.value);
     }
 
 

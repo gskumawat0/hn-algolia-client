@@ -21,11 +21,9 @@ export function apiCall(method, path, data) {
                     return reject(err.response.data);
                 }
                 else if (err.request) {
-                    return reject({ message: "an error occured while processing your request. please check your network connection" });
+                    return reject({ message: "something went wrong. please try again later." });
                 }
                 else {
-                    debugger
-                    console.log('Error', err, err.message, 777);
                     return reject(err.message);
                 }
             });
