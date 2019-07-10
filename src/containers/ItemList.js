@@ -6,15 +6,12 @@ import SearchItem from '../components/SearchItem';
 
 class ItemList extends Component {
     componentDidMount() {
-        // debugger
         this.props.fetchItems();
     }
     render() {
-        // debugger
         const { items, errors } = this.props;
-        // console.log(items);
         let itemList = items.map((item, i) =>
-            <SearchItem key = { item.objectID } created_at = { item.created_at || Date.now() } title = { item.title || 'This is message head' } author = { item.author || 'unknown' } points = { item.points || 20 } num_comments = { item.num_comments || 20 } url = { item.url || 'https://gskumawat.herokuapp.com' }
+            <SearchItem key = { item.objectID } created_at = { item.created_at || Date.now() } title = { item.title } author = { item.author || 'unknown' } points = { item.points || 20 } num_comments = { item.num_comments || 20 } url = { item.url || 'https://gskumawat.herokuapp.com' }
             />);
         return (
             <div>
@@ -30,6 +27,7 @@ class ItemList extends Component {
 
 
 function mapStateToProps(state) {
+    debugger
     return {
         items: state.items,
         errors: state.errors

@@ -8,16 +8,17 @@ export const loadItems = (items) => ({
 });
 
 export const fetchItems = (query) => {
-    let baseUrl = `http://hn.algolia.com/api/v1/search`
-    let searchUrl = `${baseUrl}?query=${query||''}&tags=story${process.env.NODE_ENV !=='development'?'&origin=*' : ''}`;
+    let searchUrl = `${process.env.REACT_APP_HN_ALGOLIA_API}tags=story`
+    if(query){
+        searchUrl += `&query=${query}`
+    }
+    console.log(searchUrl);
     return dispatch => {
-        debugger
         return apiCall('get', searchUrl, null)
             .then((res) => {
                 dispatch(loadItems(res.hits));
             })
             .catch((err) => {
-                debugger
                 dispatch(addError(err.message));
             });
     };

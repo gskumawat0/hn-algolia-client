@@ -17,11 +17,12 @@ export function apiCall(method, path, data) {
                 return resolve(res.data);
             })
             .catch((err) => {
+                // debugger
                 if (err.response) {
                     return reject(err.response.data);
                 }
-                else if (err.request) {
-                    return reject({ message: "something went wrong. please try again later." });
+                else if (err.message) {
+                    return reject({ message: err.message });
                 }
                 else {
                     return reject(err.message);

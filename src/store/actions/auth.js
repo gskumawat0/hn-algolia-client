@@ -25,22 +25,24 @@ export function logout() {
 }
 
 export function authUser(type, userData) {
-    let authUrl = process.env.NODE_ENV === 'development' ? `https://hn-algolia-gskumawat.c9users.io:8080/api/auth` : process.env.AUTH_URL
-    debugger
+    let authUrl =  process.env.REACT_APP_API_URL
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return apiCall('post', `${authUrl}/${type}`, userData)
-                .then(({ token, ...user }) => {
-                    localStorage.setItem('jwtToken', token);
-                    setAuthorizationToken({ token });
-                    // debugger
-                    dispatch(setCurrentUser(user));
-                    dispatch(removeError());
-                    resolve();
+            return apiCall('post', `${authUrl}/api/auth/${type}`, userData)
+                .then(({ success, ...data}) => {
+                    if(success){
+                        localStorage.setItem('jwtToken', data.token);
+                        setAuthorizationToken(data.token);
+                        dispatch(setCurrentUser(data.user));
+                        dispatch(removeError());
+                        resolve();
+                    }
+                    else throw new Error(data.message)
+                    
                 })
                 .catch((err) => {
-                    dispatch(addError(err.message));
-                    reject(err);
+                    dispatch(addError(err.message || err.errmsg ||'something went wrong'));
+                    reject();
                 });
         })
     };

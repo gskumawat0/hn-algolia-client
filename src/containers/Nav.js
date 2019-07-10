@@ -14,15 +14,13 @@ class Navbar extends Component {
             query: ''
         };
 
-        this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
-        if (e.target.value !== '')
-            this.props.fetchItems(e.target.value);
+        this.props.fetchItems(e.target.value);
     }
 
 

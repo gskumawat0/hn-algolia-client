@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 class AuthForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
-            email: ''
+            email: '',
+            password: ''
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit = e => {
@@ -29,14 +27,12 @@ class AuthForm extends Component {
     }
 
     render() {
-        const { email, username } = this.state;
+        const { email,password } = this.state;
         const { heading, buttonText, errors, history, removeError } = this.props;
 
         history.listen(() => {
             removeError();
         });
-        // errors.message && console.log(errors.message, 54343);
-        // debugger
         return (
             <div className='mt-5'>
                 <div className='row justify-content-md-center'>
@@ -48,12 +44,11 @@ class AuthForm extends Component {
                             }
                             <label htmlFor="email" className='text-left mt-2'>Email:</label>
                             <input type="text" className='form-control' id='email' placeholder='email' value={email} onChange={this.handleChange} name="email"/>
-                            <label htmlFor="username" className='text-left mt-2'>Username:</label>
-                            <input type="text" className='form-control' id='username' name="username"  value={username} placeholder='username' onChange={this.handleChange} />
                             <label htmlFor="password" className='text-left mt-2'>Password:</label>
-                            <input type="password" className='form-control' id='password' name="password" onChange={this.handleChange} placeholder='password'/>
+                            <input type="password" className='form-control' id='password' name="password" value={password} onChange={this.handleChange} placeholder='password'/>
                             <input type="submit" className='form-control bg-warning mt-2' value={buttonText}/>
                         </form>
+                        {this.props.signUp ? <Link to='/signin'>Have an account? login here </Link>: <Link to='/signup'>Don't have an account? signup here</Link>}
                     </div>
                 </div>       
             </div>
