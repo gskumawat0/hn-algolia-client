@@ -4,7 +4,6 @@ import './SearchItem.css';
 
 
 const SearchItem = ({ created_at, title, author, url, points, num_comments }) => {
-    // debugger
     return (
         <div className='search-item p-2'>
                 <h1 className='h5'>{title}</h1>
