@@ -11,7 +11,7 @@ const Main = (props) => {
 	const { authUser, errors, removeError } = props;
 	return (
 		<Switch>
-			<Route exact path="/" component={Homepage} />
+			<Route exact path="/" component={withAuth(Homepage)} />
 			<Route
 				exact
 				path="/signup"
