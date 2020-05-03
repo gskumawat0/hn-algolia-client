@@ -4,14 +4,14 @@ import { addError, removeError } from "../store/actions/errors";
 
 export default function withAuth(ComponentToBeRendered) {
 	class Authenticate extends Component {
-		componentWillMount() {
+		UNSAFE_componentWillMount() {
 			if (!this.props.isAuthenticated) {
 				this.props.addError("you must be signed in to proceed");
 				this.props.history.push("/signin");
 				return false;
 			}
 		}
-		componentWillUpdate(nextProps) {
+		UNSAFE_componentWillUpdate(nextProps) {
 			if (!this.props.isAuthenticated) {
 				this.props.addError("you must be signed in to proceed");
 				this.props.history.push("/signin");
